@@ -1,0 +1,20 @@
+$white-color:#fff;
+$blue-color:rgb(35, 132, 232);
+$black-color:#000;
+$green-color:#00b600;
+$grey-color:#eee;
+$yellow-color:#f7b512;
+
+$font-size: .4rem;
+$font-des-size: .2rem;
+$font-title-size: .6rem;
+
+$font-color:#666;
+$font-des-color:#999;
+$font-title-color:#333;
+
+@mixin textOverflow() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

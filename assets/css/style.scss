@@ -1,0 +1,105 @@
+@import "variables.scss";
+body {
+    margin: 0 auto;
+    max-width: 650px;
+    box-sizing: border-box;
+    font-size: $font-size;
+    color: $font-color;
+    line-height: 1.47;
+}
+
+
+.header {        
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .4rem;
+    border-bottom: 1px solid $grey-color;
+    background: $white-color;
+    .goback {
+        font-size: $font-title-size;
+    }
+    .title {
+        width: 100%;
+        text-align: center;
+        color: $green-color;
+        font-size: $font-title-size;
+    }
+}
+
+.pagecontent {
+    padding: .4rem;
+    margin-top: 1.7rem;
+}
+.listTitle {
+    margin: 0 .2rem;
+    h4 {
+        font-size: $font-size;
+    }
+    h2 {
+        font-size: $font-title-size;
+    }
+}
+.list {
+    margin-bottom:0.5rem;
+}
+.listItem {
+    ul {
+        display: flex;
+        flex-wrap: wrap;            
+        li {
+            width: 33%;                
+            a {
+                display:block;
+                margin-right: .2rem;
+                margin-left: .2rem;
+                margin-top: .2rem;
+                img {
+                    width:100%;
+                    height:auto;
+                    margin-bottom: .2rem;
+                }
+                > span {
+                    display: block;
+                    @include textOverflow();
+                    text-align: center;
+                }
+                .title {
+                    font-size: $font-size;
+                }
+                .text {
+                    font-size: $font-des-size;
+                    color: $font-des-color;
+                    line-height: 0.7rem;
+                }
+                .el-rate {
+                    display: inline-block;
+                    margin-right: .1rem;
+                    .el-rate__icon {
+                        font-size:14px;
+                        margin-right:0;
+                    }
+                }
+            }                
+        }
+    }
+}
+
+.row  {
+    .listItem {
+        overflow-x: auto; 
+        ul {
+            flex-wrap: nowrap;
+            li {
+                width: auto;
+                img {
+                    height:157px;                    
+                }
+                a,
+                img {
+                    width:111px;
+                }
+            }
+        }
+    }
+}

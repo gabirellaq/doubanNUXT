@@ -43,16 +43,38 @@
 
 ## 配置
 
-## 接口
-> interface 文件
+## 接口(豆瓣API浏览器访问跨域)
+> 处理方法1（使用nodejs+express）
 ```
 cd interface
 npm install
 npm start
 
 //localhost:9000
+//具体接口信息查看 `/interface/readme.md`
 ```
-> 具体接口信息查看 `/interface/readme.md`
+
+> 处理方法2（jsonp）
+```
+//superagent
+//superagent-jsonp
+
+import request from 'superagent'
+import jsonp from 'superagent-jsonp'
+const baseUrl = 'https://api.douban.com/v2/'
+request
+  .get(baseUrl + url)
+  .query(data)
+  .use(jsonp({
+      timeout: 3000,
+      callbackName: 'callback'
+  }))
+  .then(res =>{
+      return res.body;
+  }).catch(err => {
+      console.log("request err:", err);
+  })
+```
 
 ## 疑问
 * 刷新数据不加载

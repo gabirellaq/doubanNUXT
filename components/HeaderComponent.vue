@@ -4,13 +4,13 @@
             <a class="logo">豆瓣</a>
             <ul>
                 <li>
-                    <nuxt-link :to="`/movie`">电影</nuxt-link>
+                    <nuxt-link :to="`/movie/movie`" syle="color:#2384e8">电影</nuxt-link>
                 </li>
                 <li>
-                    <nuxt-link :to="`/book`">图书</nuxt-link>
+                    <nuxt-link :to="`/book/book`"  syle="color:#9f7860">图书</nuxt-link>
                 </li>
                 <li>
-                    <nuxt-link :to="`/broadcast`">广播</nuxt-link>
+                    <nuxt-link :to="`/broadcast/broadcast`"  syle="color:#e4a813">广播</nuxt-link>
                 </li>
             </ul>
         </div>
@@ -37,6 +37,7 @@
         right:0;
         max-width: 640px;
         margin: auto;
+        z-index:222;
     }
     .header {
         .logo {

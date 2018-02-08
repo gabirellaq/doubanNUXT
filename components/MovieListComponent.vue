@@ -4,7 +4,7 @@
     <div class="listItem">
         <ul v-if=" propsTitle === '豆瓣电影北美票房榜'">
             <li v-for="(item,index) in propsData" :key="index">
-                <nuxt-link :to="`/movie`">
+                <nuxt-link :to="`/${category}/${category}Detail?id=${item.subject.id}`">
                     <img :src="item.subject.images.small || item.subject.images.large || item.subject.images.medium">
                     <span class="title">{{item.subject.title}}</span>
                     <span class="rating-stars" v-if="item.subject.rating.average > 0">
@@ -16,13 +16,13 @@
                         </el-rate>
                         <span class="text">{{item.subject.rating.average}}</span>
                     </span>
-                    <span class="text" v-if="item.subject.rating.average === 0">暂无评论</span>
+                    <span class="text" v-if="item.subject.rating.average === 0">暂无评分</span>
                 </nuxt-link>
             </li>
         </ul>
         <ul v-else>
             <li v-for="(item,index) in propsData" :key="index">
-                <nuxt-link :to="`/movie`">
+                <nuxt-link :to="`/${category}/${category}Detail?id=${item.id}`">
                     <img :src="item.images.small || item.images.large || item.images.medium">
                     <span class="title">{{item.title}}</span>
                     <span class="rating-stars" v-if="item.rating.average > 0">
@@ -47,7 +47,8 @@
         pageName: 'list', //电影和图书列表
         props: [
             'propsTitle', 
-            'propsData'
+            'propsData',
+            'category'
         ],
         data () {
             return {

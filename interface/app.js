@@ -55,6 +55,22 @@ app.use("/movie/weekly", require('./router/movie/weekly'));
  */
 app.use("/movie/coming_soon", require('./router/movie/coming_soon'));
 
+/**
+ * 图书
+ * 搜索
+ * https://api.douban.com/v2/book/search
+ * http://localhost:9000/book/search
+ */
+app.use("/book/search", require('./router/book/search'));
+
+/**
+ * 图书
+ * 图书信息
+ * https://api.douban.com/v2/book/3131042
+ * http://localhost:9000/book/3131042
+ */
+app.use("/book", require('./router/book/book'));
+
 
 //module.exports = router;
 const APP_PORT = 9000;

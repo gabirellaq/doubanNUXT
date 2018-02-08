@@ -1,30 +1,39 @@
 <template>
     <div class="pagecontent movie">
-        <ListComponent v-if="movieInTheaters"
+        <MovieListComponent v-if="movieInTheaters"
             :propsTitle="movieInTheaters.title" 
             :propsData="movieInTheaters.subjects"
+            category="movie"
             class="row">
-        </ListComponent>
-        <ListComponent v-if="movieComingSoon"
+        </MovieListComponent>
+        <MovieListComponent v-if="movieComingSoon"
             :propsTitle="movieComingSoon.title" 
             :propsData="movieComingSoon.subjects"
+            category="movie"
             class="row">
-        </ListComponent>
-        <ListComponent v-if="movieUsBox"
+        </MovieListComponent>
+        <MovieListComponent v-if="movieTop250"
+            :propsTitle="movieTop250.title" 
+            :propsData="movieTop250.subjects"
+            category="movie"
+            class="row">
+        </MovieListComponent>
+        <MovieListComponent v-if="movieUsBox"
             :propsTitle="movieUsBox.title" 
             :propsData="movieUsBox.subjects"
+            category="movie"
             class="row">
-        </ListComponent>
+        </MovieListComponent>
     </div>
 </template>
 
 <script>
     import { mapState, mapMutations, mapActions } from 'vuex';
-    import ListComponent from '@/components/ListComponent';
+    import MovieListComponent from '@/components/MovieListComponent';
     export default {
         pageName:'movie',
         components: {
-            ListComponent
+            MovieListComponent
         },
         data () {
             return {
@@ -36,6 +45,7 @@
                 'getMovieInTheaters', //正在热映
                 'getMovieComingSoon', //即将上映
                 'getMovieUsBox', //北美票房榜
+                'getMovieTop250', //top250
             ]),
         },
         computed: {
@@ -43,20 +53,14 @@
                 'movieInTheaters': state => state.movie.movie_in_theaters, //正在热映
                 'movieComingSoon': state => state.movie.movie_coming_soon, //即将上映
                 'movieUsBox': state => state.movie.movie_us_box, //北美票房榜
+                'movieTop250': state => state.movie.movie_top250, //top250
             })
         },
         mounted() {
             this.getMovieInTheaters({'count':8});
-            console.log(this.movieInTheaters);
             this.getMovieComingSoon({'count':8});
             this.getMovieUsBox();
+            this.getMovieTop250();
         }
     }
 </script>
-
-<style lang="scss">
-    @import "~assets/css/variables.scss";
-    .movie {
-
-    }
-</style>

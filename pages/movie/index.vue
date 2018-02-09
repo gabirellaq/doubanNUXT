@@ -43,6 +43,10 @@
         data () {
             return {
                 title: '电影',
+                movieInTheaters: [], //正在热映
+                movieComingSoon: [], //即将上映
+                movieUsBox: [], //北美票房榜
+                movieTop250: [], //top250
             }
         },
         methods: {
@@ -53,19 +57,20 @@
                 'getMovieTop250', //top250
             ]),
         },
-        computed: {
-            ...mapState({
-                'movieInTheaters': state => state.movie.movie_in_theaters, //正在热映
-                'movieComingSoon': state => state.movie.movie_coming_soon, //即将上映
-                'movieUsBox': state => state.movie.movie_us_box, //北美票房榜
-                'movieTop250': state => state.movie.movie_top250, //top250
-            })
+        async asyncData (context) {
+            console.log(context);
+            return {
+                movieInTheaters: context.store.state.movie.movie_in_theaters, //正在热映
+                movieComingSoon: context.store.state.movie.movie_coming_soon, //即将上映
+                movieUsBox: context.store.state.movie.movie_us_box, //北美票房榜
+                movieTop250: context.store.state.movie.movie_top250, //top250
+            }
         },
-        mounted() {
-            this.getMovieInTheaters({'count':8});
-            this.getMovieComingSoon({'count':8});
-            this.getMovieUsBox();
-            this.getMovieTop250();
+        async fetch ({ store, params }) {
+            store.dispatch('getMovieInTheaters', {'count':8});//正在热映
+            store.dispatch('getMovieComingSoon', {'count':8});//即将上映
+            store.dispatch('getMovieUsBox');//北美票房榜
+            store.dispatch('getMovieTop250');//top250
         }
     }
 </script>

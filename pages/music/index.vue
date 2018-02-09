@@ -50,7 +50,24 @@
         },
         data () {
             return {
-                title: '音乐'
+                title: '音乐',
+                musicPopular: [], //流行
+                musicLight: [], //轻音乐
+                musicRock: [], //摇滚
+                musicClassical: [], //古典
+                musicBallad: [], //民谣
+                musicRap: [], //说唱
+            }
+        },
+        async asyncData (context) {
+            console.log(context);
+            return {
+                musicPopular: context.store.state.music.music_popular, //流行
+                musicLight: context.store.state.music.music_light, //轻音乐
+                musicRock: context.store.state.music.music_rock, //摇滚
+                musicClassical: context.store.state.music.music_classical, //古典
+                musicBallad: context.store.state.music.music_ballad, //民谣
+                musicRap: context.store.state.music.music_rap, //说唱
             }
         },
         async fetch ({ store, params }) {
@@ -76,16 +93,6 @@
             ...mapMutations([
                 'GETMUSICSEARCH'
             ])
-        },
-        computed: {
-            ...mapState({
-                'musicPopular': state => state.music.music_popular, //流行
-                'musicLight': state => state.music.music_light, //轻音乐
-                'musicRock': state => state.music.music_rock, //摇滚
-                'musicClassical': state => state.music.music_classical, //古典
-                'musicBallad': state => state.music.music_ballad, //民谣
-                'musicRap': state => state.music.music_rap, //说唱
-            })
         }
     }
 </script>

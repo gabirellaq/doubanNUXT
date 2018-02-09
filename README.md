@@ -77,5 +77,4 @@ request
 ```
 
 ## 疑问
-* 刷新数据不加载
 * element ui rate动态修改数据

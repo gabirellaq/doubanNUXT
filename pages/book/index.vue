@@ -50,7 +50,25 @@
         },
         data () {
             return {
-                title: '图书'
+                title: '图书',
+                bookVirtual:[],
+                bookNonVirtual:[],
+                bookTravel:[],
+                bookYounger:[],
+                bookFiction:[],
+                bookLove:[],
+            }
+        },
+        scrollToTop: false,
+        async asyncData (context) {
+            console.log(context);
+            return {
+                bookVirtual: context.store.state.book.book_virtual,
+                bookNonVirtual: context.store.state.book.book_nonvirtual,
+                bookTravel: context.store.state.book.book_travel,
+                bookYounger: context.store.state.book.book_younger,
+                bookFiction: context.store.state.book.book_fiction,
+                bookLove: context.store.state.book.book_love
             }
         },
         async fetch({store, params}) {
@@ -76,16 +94,6 @@
             ...mapMutations([
                 'GETBOOKSEARCH', //虚拟类图书
             ])
-        },
-        computed: {
-            ...mapState({
-                'bookVirtual': state => state.book.book_virtual,
-                'bookNonVirtual': state => state.book.book_nonvirtual,
-                'bookTravel': state => state.book.book_travel,
-                'bookYounger': state => state.book.book_younger,
-                'bookFiction': state => state.book.book_fiction,
-                'bookLove': state => state.book.book_love
-            })
         }
     }
 </script>

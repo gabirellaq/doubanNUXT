@@ -4,7 +4,7 @@
     <div class="listItem">
         <ul v-if=" propsTitle === '豆瓣电影北美票房榜'">
             <li v-for="(item,index) in propsData" :key="index">
-                <nuxt-link :to="`/${category}/${category}Detail?id=${item.subject.id}`">
+                <nuxt-link :to="`/${category}/detail?id=${item.subject.id}`">
                     <img :src="item.subject.images.small || item.subject.images.large || item.subject.images.medium">
                     <span class="title">{{item.subject.title}}</span>
                     <span class="rating-stars" v-if="item.subject.rating.average > 0">
@@ -22,7 +22,7 @@
         </ul>
         <ul v-else>
             <li v-for="(item,index) in propsData" :key="index">
-                <nuxt-link :to="`/${category}/${category}Detail?id=${item.id}`">
+                <nuxt-link :to="`/${category}/detail?id=${item.id}`">
                     <img :src="item.images.small || item.images.large || item.images.medium">
                     <span class="title">{{item.title}}</span>
                     <span class="rating-stars" v-if="item.rating.average > 0">

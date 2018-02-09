@@ -4,7 +4,7 @@
     <div class="listItem" v-if="propsData">
         <ul>
             <li v-for="(item,index) in propsData" :key="index">
-                <nuxt-link :to="`/${category}/${category}Detail?id=${item.id}`">
+                <nuxt-link :to="`/${category}/detail?id=${item.id}`">
                     <img :src="item.images.small || item.images.large || item.images.medium">
                     <span class="title">{{item.title}}</span>
                     <span class="rating-stars" v-if="item.rating.average > 0">

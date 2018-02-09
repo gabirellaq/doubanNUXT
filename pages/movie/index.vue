@@ -35,6 +35,11 @@
         components: {
             MovieListComponent
         },
+        head () {
+            return {
+                title: '豆瓣 - 电影'
+            }
+        },
         data () {
             return {
                 title: '电影',

@@ -5,16 +5,10 @@
         <ul>
             <li v-for="(item,index) in propsData" :key="index">
                 <nuxt-link :to="`/${category}/${category}Detail?id=${item.id}`">
-                    <img :src="item.images.small || item.images.large || item.images.medium">
+                    <img :src="item.image">
                     <span class="title">{{item.title}}</span>
                     <span class="rating-stars" v-if="item.rating.average > 0">
-                        <el-rate
-                            v-model="value5"
-                            disabled
-                            text-color="#ff9900"
-                            score-template="{value}">
-                        </el-rate>
-                        <span class="text">{{item.rating.average}}</span>
+                        <span class="text">评分：{{item.rating.average}}</span>
                     </span>
                     <span class="text" v-if="item.rating.average === 0">暂无评分</span>
                 </nuxt-link>
@@ -26,7 +20,7 @@
 
 <script>
     export default {
-        pageName: 'list', //电影和图书列表
+        pageName: 'list', 
         props: [
             'propsTitle', 
             'propsData',
@@ -34,7 +28,7 @@
         ],
         data () {
             return {
-                value5: 3.7
+
             }
         }
     }

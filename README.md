@@ -46,12 +46,12 @@
 ## 接口(豆瓣API浏览器访问跨域)
 > 处理方法1（使用nodejs+express）
 ```
-cd interface
+cd server
 npm install
 npm start
 
 //localhost:9000
-//具体接口信息查看 `/interface/readme.md`
+//具体接口信息查看 `/server/readme.md`
 ```
 
 > 处理方法2（jsonp）
@@ -79,4 +79,3 @@ request
 ## 疑问
 * 刷新数据不加载
 * element ui rate动态修改数据
-* 引用外部组件（已解决）

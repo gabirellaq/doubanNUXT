@@ -35,17 +35,17 @@ export default {
         },
     },
     actions: {
-        //图书搜索      
-        async getBookVirtual ({commit}, {q,count}) {
-            let params = {
-                'q': q,
-                'count': count || 8
-            }
-            let res = await axiosRq('GET', 'book/search', params);
-            commit('GETBOOKSEARCH',{
-                q: q,
-                res: res
-            });
-        },
+        // //图书搜索      
+        // async getBookVirtual ({commit}, {q,count}) {
+        //     let params = {
+        //         'q': q,
+        //         'count': count || 8
+        //     }
+        //     let res = await axiosRq('GET', 'book/search', params);
+        //     commit('GETBOOKSEARCH',{
+        //         q: q,
+        //         res: res
+        //     });
+        // },
     }
 }

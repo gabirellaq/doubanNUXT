@@ -17,7 +17,7 @@ module.exports = {
         link: [
             {
                 'rel': 'stylesheet',
-                'href': '//at.alicdn.com/t/font_562725_frnswhj7jgfzuxr.css'
+                'href': '//at.alicdn.com/t/font_562725_orktergz2etawcdi.css'
             }
         ]
     },
@@ -41,5 +41,8 @@ module.exports = {
     plugins: [
         '~plugins/filters',
         '~plugins/element-ui'
-    ]
+    ],
+    build: {
+        vendor: ['axios']
+    }
 }

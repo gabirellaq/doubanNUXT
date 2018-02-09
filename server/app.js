@@ -58,8 +58,8 @@ app.use("/movie/coming_soon", require('./router/movie/coming_soon'));
 /**
  * 图书
  * 搜索
- * https://api.douban.com/v2/book/search
- * http://localhost:9000/book/search
+ * https://api.douban.com/v2/book/search?q="旅行"&count=8
+ * http://localhost:9000/book/search?q="旅行"&count=8
  */
 app.use("/book/search", require('./router/book/search'));
 
@@ -70,6 +70,22 @@ app.use("/book/search", require('./router/book/search'));
  * http://localhost:9000/book/3131042
  */
 app.use("/book", require('./router/book/book'));
+
+/**
+ * 音乐
+ * 搜索
+ * https://api.douban.com/v2/music/search?q="民谣"&count=8
+ * http://localhost:9000/music/search?q="民谣"&count=8
+ */
+app.use("/music/search", require('./router/music/search'));
+
+/**
+ * 音乐
+ * 音乐信息
+ * https://api.douban.com/v2/music/3131042
+ * http://localhost:9000/music/3131042
+ */
+app.use("/music", require('./router/music/music'));
 
 
 //module.exports = router;

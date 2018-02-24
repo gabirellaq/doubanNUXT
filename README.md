@@ -76,5 +76,3 @@ request
   })
 ```
 
-## 疑问
-* element ui rate动态修改数据

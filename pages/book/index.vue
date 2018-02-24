@@ -1,37 +1,37 @@
 <template>
     <div class="index pagecontent">
         <BookListComponent v-if="bookTravel"
-            propsTitle="最受专注图书 | 旅行" 
+            :propsTitle="bookTravel.title" 
             :propsData="bookTravel.books"
             category="book"
             class="row">
         </BookListComponent>
         <BookListComponent v-if="bookYounger"
-            propsTitle="最受专注图书 | 青春" 
+            :propsTitle="bookYounger.title" 
             :propsData="bookYounger.books"
             category="book"
             class="row">
         </BookListComponent>
         <BookListComponent v-if="bookFiction"
-            propsTitle="最受专注图书 | 小说" 
+            :propsTitle="bookFiction.title" 
             :propsData="bookFiction.books"
             category="book"
             class="row">
         </BookListComponent>
         <BookListComponent v-if="bookLove"
-            propsTitle="最受专注图书 | 爱情" 
+            :propsTitle="bookLove.title" 
             :propsData="bookLove.books"
             category="book"
             class="row">
         </BookListComponent>
         <BookListComponent v-if="bookVirtual"
-            propsTitle="最受专注图书 | 虚构类" 
+            :propsTitle="bookVirtual.title" 
             :propsData="bookVirtual.books"
             category="book"
             class="row">
         </BookListComponent>
         <BookListComponent v-if="bookNonVirtual"
-            propsTitle="最受专注图书 | 非虚构类" 
+            :propsTitle="bookNonVirtual.title" 
             :propsData="bookNonVirtual.books"
             category="book"
             class="row">
@@ -40,7 +40,6 @@
 </template>
 
 <script>
-    import axiosRq from '../../util/util.js';
     import { mapState, mapMutations, mapActions } from 'vuex';
     import BookListComponent from '@/components/BookListComponent';
     export default {
@@ -48,52 +47,37 @@
         components: {
             BookListComponent
         },
-        data () {
-            return {
-                title: '图书',
-                bookVirtual:[],
-                bookNonVirtual:[],
-                bookTravel:[],
-                bookYounger:[],
-                bookFiction:[],
-                bookLove:[],
-            }
-        },
         scrollToTop: false,
         async asyncData (context) {
             console.log(context);
-            return {
-                bookVirtual: context.store.state.book.book_virtual,
-                bookNonVirtual: context.store.state.book.book_nonvirtual,
-                bookTravel: context.store.state.book.book_travel,
-                bookYounger: context.store.state.book.book_younger,
-                bookFiction: context.store.state.book.book_fiction,
-                bookLove: context.store.state.book.book_love
-            }
-        },
-        async fetch({store, params}) {
             let querys = ['虚构类','非虚构类','旅行','青春','小说','爱情'];
-            querys.map( async (item) => {
-                params = {
-                    'q': item,
-                    'count': 8
-                }
-                let data = await axiosRq("GET", "book/search", params);
-                store.commit('GETBOOKSEARCH', {
-                    q: item,
-                    res: data
-                });
-            })
+            return await Promise.all([
+                context.store.dispatch('getBookVirtual', {'q': querys[0]}),
+                context.store.dispatch('getBookVirtual', {'q': querys[1]}),
+                context.store.dispatch('getBookVirtual', {'q': querys[2]}),
+                context.store.dispatch('getBookVirtual', {'q': querys[3]}),
+                context.store.dispatch('getBookVirtual', {'q': querys[4]}),
+                context.store.dispatch('getBookVirtual', {'q': querys[5]}),
+            ]);
         },
         head() {
             return {
                 title: '豆瓣 - 图书'
             }
         },
+        data () {
+            console.log("yyy", this.$store);
+            return {
+                title: '最受关注图书',
+                bookVirtual: this.$store.state.book.book_virtual,
+                bookNonVirtual: this.$store.state.book.book_nonvirtual,
+                bookTravel: this.$store.state.book.book_travel,
+                bookYounger: this.$store.state.book.book_younger,
+                bookFiction: this.$store.state.book.book_fiction,
+                bookLove: this.$store.state.book.book_love,
+            }
+        },
         methods: {
-            ...mapMutations([
-                'GETBOOKSEARCH', //虚拟类图书
-            ])
         }
     }
 </script>

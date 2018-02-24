@@ -16,7 +16,7 @@
                     <span class="text" v-else>暂未评分</span>
                 </div>
                 <div class="sum">
-                    {{book.pages}}/{{book.binding}}/{{book.price}}
+                    {{book.pages}}页/{{book.binding}}/{{book.price}}
                 </div>
             </div>
             <div class="mr" v-if="book.images">
@@ -52,7 +52,7 @@ export default {
         getBook(id){
             superagent("get","book/"+id).then(res=>{
                 this.book = res;
-                console.log(res.rating.stars);
+                console.log(res);
                 this.starValue = parseInt(res.rating.stars) / 10;
             });
         }

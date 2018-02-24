@@ -8,13 +8,7 @@
                     <img :src="item.images.small || item.images.large || item.images.medium">
                     <span class="title">{{item.title}}</span>
                     <span class="rating-stars" v-if="item.rating.average > 0">
-                        <el-rate
-                            v-model="value5"
-                            disabled
-                            text-color="#ff9900"
-                            score-template="{value}">
-                        </el-rate>
-                        <span class="text">{{item.rating.average}}</span>
+                        <RatingComponent :rating="item.rating.average"></RatingComponent>
                     </span>
                     <span class="text" v-if="item.rating.average === 0">暂无评分</span>
                 </nuxt-link>
@@ -25,6 +19,7 @@
 </template>
 
 <script>
+    import RatingComponent from '@/components/RatingComponent';
     export default {
         pageName: 'list', //电影和图书列表
         props: [
@@ -32,9 +27,11 @@
             'propsData',
             'category'
         ],
+        components:{
+            RatingComponent
+        },
         data () {
             return {
-                value5: 3.7
             }
         }
     }

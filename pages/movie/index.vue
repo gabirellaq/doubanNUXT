@@ -35,6 +35,16 @@
         components: {
             MovieListComponent
         },
+        async asyncData (context) {
+            console.log(context);
+           return await Promise.all([
+                context.store.dispatch('getMovieInTheaters', {'count':8}),//正在热映
+                context.store.dispatch('getMovieComingSoon', {'count':8}),//即将上映
+                context.store.dispatch('getMovieUsBox'),//北美票房榜
+                context.store.dispatch('getMovieTop250'),//top250
+            ]);
+            
+        },
         head () {
             return {
                 title: '豆瓣 - 电影'
@@ -43,34 +53,11 @@
         data () {
             return {
                 title: '电影',
-                movieInTheaters: [], //正在热映
-                movieComingSoon: [], //即将上映
-                movieUsBox: [], //北美票房榜
-                movieTop250: [], //top250
+                movieInTheaters: this.$store.state.movie.movie_in_theaters, //正在热映
+                movieComingSoon: this.$store.state.movie.movie_coming_soon, //即将上映
+                movieUsBox: this.$store.state.movie.movie_us_box, //北美票房榜
+                movieTop250: this.$store.state.movie.movie_top250, //top250
             }
-        },
-        methods: {
-            ...mapActions([
-                'getMovieInTheaters', //正在热映
-                'getMovieComingSoon', //即将上映
-                'getMovieUsBox', //北美票房榜
-                'getMovieTop250', //top250
-            ]),
-        },
-        async asyncData (context) {
-            console.log(context);
-            return {
-                movieInTheaters: context.store.state.movie.movie_in_theaters, //正在热映
-                movieComingSoon: context.store.state.movie.movie_coming_soon, //即将上映
-                movieUsBox: context.store.state.movie.movie_us_box, //北美票房榜
-                movieTop250: context.store.state.movie.movie_top250, //top250
-            }
-        },
-        async fetch ({ store, params }) {
-            store.dispatch('getMovieInTheaters', {'count':8});//正在热映
-            store.dispatch('getMovieComingSoon', {'count':8});//即将上映
-            store.dispatch('getMovieUsBox');//北美票房榜
-            store.dispatch('getMovieTop250');//top250
         }
     }
 </script>

@@ -84,6 +84,8 @@
         min-height: 100%;
         z-index: 2222;
         background: $white-color;
+        max-width: 640px;
+        margin: auto;
         form {
             input[type="email"], 
             input[type="text"], 

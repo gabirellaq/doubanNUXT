@@ -1,11 +1,11 @@
 import axiosRq from '../../util/util';
 
 export const state = () => ({
-    movie_in_theaters: [], //正在上映
-    movie_coming_soon: [], //即将上映
-    movie_us_box: [], //北美票房榜
-    movie_top250:[], //top250
-    movie_weekly: [], //口碑榜
+    movie_in_theaters: {}, //正在上映
+    movie_coming_soon: {}, //即将上映
+    movie_us_box: {}, //北美票房榜
+    movie_top250:{}, //top250
+    movie_weekly: {}, //口碑榜
 })
 export default {
     mutations: {
@@ -33,6 +33,7 @@ export default {
             }
             let res = await axiosRq('GET', 'movie/in_theaters', params);
             commit('GETMOVIEINTHEATERS',res);
+            return res;
         },
         //即将上线
         async getMovieComingSoon ({commit}, {count}) {
